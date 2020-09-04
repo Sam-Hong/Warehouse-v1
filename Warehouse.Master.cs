@@ -16,7 +16,7 @@ namespace Warehouse
 
         protected void BtAdminLogout_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/SignIn.aspx");
+            Response.Redirect("~/Login.aspx");
         }
     }
 }

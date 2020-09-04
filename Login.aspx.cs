@@ -7,25 +7,21 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient; //this namespace is for sqlclient server  
 using System.Configuration; // this namespace is add I am adding connection name in web config file config connection name
 
-
 namespace Warehouse
 {
-    public partial class SignIn1 : System.Web.UI.Page
+    public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
         protected void Button1_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
             try
             {
-                string uid = UserName.Text;
-                string pass = Password.Text;
                 con.Open();
-                string qry = "select * from Account where Username='" + uid + "' and Password='" + pass + "'";
+                string qry = "select * from Users where Account='" + UserName.Text + "' and Password='" + Password.Text + "'";
                 SqlCommand cmd = new SqlCommand(qry, con);
                 SqlDataReader sdr = cmd.ExecuteReader();
                 if (sdr.Read())
@@ -34,7 +30,7 @@ namespace Warehouse
                 }
                 else
                 {
-                    lblError.Text = "Invalid Username or Password !";
+                    lblError.Text = "Invalid Account or Password !";
                 }
                 con.Close();
             }
